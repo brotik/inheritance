@@ -42,6 +42,16 @@ def search_products(container, search):
     for product in container:
         if search_lowercased in product.name.lower():
             result.append(product)
+            continue
+        if isinstance(product, Tv):
+            if search_lowercased in product.resolution.lower():
+                result.append(product)
+                continue
+
+        if isinstance(product, Books):
+            if search_lowercased in product.author.lower():
+                result.append(product)
+                continue
     return result
 
 
@@ -68,3 +78,6 @@ if __name__ == '__main__':
     print(search_products(all_products, 'Samsung'))
     print(search_products(all_products, 'ASUS'))
     print(search_products(all_products, 'lacos'))
+    print(search_products(all_products, 'full hd'))
+    print(search_products(all_products, 'tolst'))
+
